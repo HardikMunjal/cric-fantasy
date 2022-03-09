@@ -8,5 +8,5 @@ module.exports= function(app){
         res.send('Welcome to the registration page')
     })
 
-    app.post('/register',userController.checkExistingUser,userController.createNewUser)
+    app.post('/register',userController.checkExistingUserName,userController.checkExistingUserEmail,userController.createNewUser)
 }
