@@ -38,6 +38,22 @@ const userSchema = new mongoose.Schema({
             }
 
         }
+    },
+    createdBy:{
+		type:String,
+		default:null
+	},
+	createdAt:{
+		type: Date,
+		default:Date.now
+	},
+	modifiedAt:{
+		type: Date,
+		default:Date.now
+	},
+    status:{
+        type: Boolean,
+        default:false
     }
 })
 
