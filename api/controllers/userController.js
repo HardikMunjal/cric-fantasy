@@ -1,5 +1,8 @@
+const bcrypt = require('bcryptjs')
+const User = require('../schemas/userSchema')
 const userModel = require('../models/userModel')
 const passValidator = require('../../helpers/utility')
+const auth = require('./authController')
 
 module.exports = user = {
 
@@ -43,5 +46,33 @@ module.exports = user = {
             }
             res.status(201).send('Success!')
         })
+    },
+
+    validateCredential: async function (req, res) {
+        const email = req.body.email
+        const password = req.body.password
+        if(!email || !password) {
+            res.status(403).json({"error": 'Email & password required'})
+        }
+        else {
+            const umail = await User.findOne({ email: email });
+            if (!umail) {
+                res.status(403).json({"error":'User does not exist'});
+            }
+    
+            else {
+                const match =await bcrypt.compare(password, umail.password);
+    
+                if (match) {
+                    const accessToken = auth.createToken(umail)
+                    res.status(200).json(accessToken)
+    
+                }
+                else {
+                    res.status(403).json({error:"Invalid password"});
+    
+                }
+            }
+        }
     }
 }
