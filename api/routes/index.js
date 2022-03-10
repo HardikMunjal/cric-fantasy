@@ -8,11 +8,8 @@ module.exports= function(app){
     app.get('',(req,res)=>{
         res.send('Welcome to the registration page')
     })
-
-    app.post('/register',userController.checkExistingUser,userController.createNewUser)
-
-
     app.post('/authenticate',userController.validateCredential)
 
     app.get('/test',authController.validateToken) //just for token validation "testing" 
+    app.post('/register',userController.checkExistingUserName,userController.checkExistingUserEmail,userController.createNewUser)
 }

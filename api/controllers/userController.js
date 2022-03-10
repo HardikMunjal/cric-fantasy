@@ -6,14 +6,30 @@ const auth = require('./authController')
 
 module.exports = user = {
 
-    checkExistingUser: function (req, res, next) {
-        userModel.checkExistingUser(req.body, function (error, result) {
+    checkExistingUserName: function (req, res, next) {
+        userModel.checkExistingUserName(req.body, function (error, result) {
             // console.log(error)
+            // console.log(result)
             if (error) {
                 return res.status(500).send(error)
             }
-            else if (result) {
-                return res.status(400).send(result)
+            else if (result.length > 0) {
+                return res.status(400).send('Username already exists')
+            }
+            next()
+        })
+    },
+    checkExistingUserEmail: function (req, res, next) {
+        userModel.checkExistingUserEmail(req.body, function (error, result) {
+            // console.log('in another block')
+            // console.log(error)
+            // console.log(result)
+            if (error) {
+                return res.status(500).send(error)
+            }
+            else if (result.length > 0) {
+                let message = 'Email id is already registered'
+                return res.status(400).send(message)
             }
             next()
         })
