@@ -1,6 +1,7 @@
 // all the api(s) and the routes are to be written here
 const userController= require('../controllers/userController')
 const authController = require('../controllers/authController')
+const Role = require('../schemas/roleSchema')
 
 
 
@@ -12,4 +13,16 @@ module.exports= function(app){
 
     app.get('/test',authController.validateToken) //just for token validation "testing" 
     app.post('/register',userController.checkExistingUserName,userController.checkExistingUserEmail,userController.createNewUser)
+
+    app.post('/roles', (req,res) => {
+        //console.log(req.body);
+        const a = new Role(req.body);
+       a.save().then(() => {
+          res.status(201).send(user);
+        }).catch((e) => {
+            res.status(400).send(e);
+        })
+      
+     })
+     
 }
