@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const auth = {
     createToken: (user) => {
-        const accessToken = jwt.sign({ email: user.email, password: user.password }, "cricjwtkey")
+        const accessToken = jwt.sign({ email: user.email, password: user.password }, "cricjwtkey", {expiresIn:"12h"})
         return accessToken
     },
     validateToken: (req, res) => {
