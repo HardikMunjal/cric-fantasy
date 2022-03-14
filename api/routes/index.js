@@ -2,6 +2,7 @@
 const userController= require('../controllers/userController')
 const authController = require('../controllers/authController')
 const logController = require('../controllers/logController')
+const Role = require('../schemas/roleSchema')
 
 
 
@@ -16,4 +17,15 @@ module.exports= function(app){
     app.post('/register',userController.checkExistingUserName,userController.checkExistingUserEmail,userController.createNewUser)
 
     app.get('/viewlog',logController.Log.fetchLogEntries)
+    app.post('/roles', (req,res) => {
+        //console.log(req.body);
+        const a = new Role(req.body);
+       a.save().then(() => {
+          res.status(201).send(user);
+        }).catch((e) => {
+            res.status(400).send(e);
+        })
+      
+     })
+     
 }
