@@ -3,6 +3,7 @@ const User = require('../schemas/userSchema')
 const userModel = require('../models/userModel')
 const passValidator = require('../../helpers/utility')
 const auth = require('./authController')
+const logContoller = require('../controllers/logController')
 
 module.exports = user = {
 
@@ -36,6 +37,7 @@ module.exports = user = {
     },
 
     createNewUser: function (req, res) {
+        logContoller.customEmitter.emit('addLog','add-user')
         if (!passValidator(req.body.password)) return res.status(400).send('Password must contain 1 numeric and 1 special character')
         userModel.newUser(req.body, function (error, result) {
             if (error) {
