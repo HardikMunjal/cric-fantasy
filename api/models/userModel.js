@@ -30,21 +30,4 @@ module.exports = userModels = {
         }
     },
 
-    // checkExistingUser: async (details, callback) => {
-    //     try {
-    //         let uname = await User.find({ username: details.username }).exec()
-    //         const mail = await User.find({ email: details.email }) 
-    //         if (uname.length>0) {
-    //             callback(undefined, 'username is already taken')
-    //         } else if (mail.length>0) {
-    //             callback(undefined,'email id alreaedy taken')
-    //         }
-    //         else callback(undefined, undefined)
-
-    //     } catch (error) {
-    //         callback(error,undefined)
-
-    //     }
-
-    // }
 }
