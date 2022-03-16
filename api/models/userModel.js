@@ -2,7 +2,8 @@ const User = require('../schemas/userSchema')
 
 module.exports = userModels = {
     newUser: async (details ,callback) => {
-        const user = new User(details)
+        const user = new User(details.body)
+        user.userImage=details.file.path
         try {
             await user.save()
             callback(undefined, user)

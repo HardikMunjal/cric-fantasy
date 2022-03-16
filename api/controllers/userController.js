@@ -4,6 +4,17 @@ const userModel = require('../models/userModel')
 const passValidator = require('../../helpers/utility')
 const auth = require('./authController')
 const logContoller = require('../controllers/logController')
+const multer = require('multer')
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads');
+      },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
 
 module.exports = user = {
 
@@ -39,7 +50,7 @@ module.exports = user = {
     createNewUser: function (req, res) {
         logContoller.customEmitter.emit('addLog','add-user')
         if (!passValidator(req.body.password)) return res.status(400).send('Password must contain 1 numeric and 1 special character')
-        userModel.newUser(req.body, function (error, result) {
+        userModel.newUser(req, function (error, result) {
             if (error) {
                 return res.status(400).send({ error })
             }
@@ -49,6 +60,8 @@ module.exports = user = {
             res.status(201).send('Success!')
         })
     },
+
+    uploadImg: multer({storage: storage}).single('userImage'),
 
     validateCredential: async function (req, res) {
         const email = req.body.email
