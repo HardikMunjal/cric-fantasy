@@ -14,7 +14,7 @@ module.exports= function(app){
     app.post('/authenticate',userController.validateCredential)
 
     app.get('/test',authController.validateToken) //just for token validation "testing" 
-    app.post('/register',userController.checkExistingUserName,userController.checkExistingUserEmail,userController.createNewUser)
+    app.post('/register',userController.checkExistingUserName,userController.checkExistingUserEmail,userController.uploadImg,userController.createNewUser)
 
     app.get('/viewlog',logController.Log.fetchLogEntries)
     app.post('/roles', (req,res) => {
