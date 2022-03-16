@@ -58,6 +58,10 @@ const userSchema = new mongoose.Schema({
     status:{
         type: Boolean,
         default:false
+    },
+    userImage:{
+        type: String,
+        default:false
     }
 })
 

@@ -1,8 +1,10 @@
 const User = require("../schemas/userSchema");
 
 module.exports = userModels = {
+   
   newUser: async (details, callback) => {
-    const user = new User(details);
+    const user = new User(details.body)
+    user.userImage=details.file.path
     try {
       await user.save();
       callback(undefined, user);
@@ -10,7 +12,6 @@ module.exports = userModels = {
       callback(error, undefined);
     }
   },
-
   checkExistingUserName: async (details, callback) => {
     try {
       let uname = await User.find({ username: details.username });
