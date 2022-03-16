@@ -1,0 +1,27 @@
+{
+  "name": "swati_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "start":"nodemon test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikki-8/nodejs-.git"
+  },
+  "author": "swati_raman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikki-8/nodejs-/issues"
+  },
+  "homepage": "https://github.com/nikki-8/nodejs-#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongodb": "^4.4.1",
+    "mongoose": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
