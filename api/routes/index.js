@@ -30,6 +30,7 @@ module.exports = function (app) {
   });
   app.post("/authenticate", userController.validateCredential);
 
+<<<<<<< HEAD
   app.get("/test", authController.validateToken); //just for token validation "testing"
   app.post(
     "/register",
@@ -51,3 +52,23 @@ module.exports = function (app) {
       });
   });
 };
+=======
+    app.get('/viewlog',logController.Log.fetchLogEntries)
+    app.post('/roles', (req,res) => {
+        //console.log(req.body);
+        const a = new Role(req.body);
+       a.save().then(() => {
+          res.status(201).send(user);
+        }).catch((e) => {
+            res.status(400).send(e);
+        })
+      
+     })
+
+     app.post('/user/:uid', userController.addFriends)
+     /* /user/:username/
+     friends [id1,id2]
+
+*/
+}
+>>>>>>> 2021f67c22b6c2784023661b58b6b57e61037f0a
