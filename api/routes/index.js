@@ -27,5 +27,10 @@ module.exports= function(app){
         })
       
      })
-     
+
+     app.post('/user/:uid', userController.addFriends)
+     /* /user/:username/
+     friends [id1,id2]
+
+*/
 }
