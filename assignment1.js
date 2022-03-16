@@ -5,6 +5,6 @@ function factorial(n){
         return n * factorial(n-1);
     }
 }
-let n = ;
+let n = 10 ;
 answer = factorial(n)
 console.log(answer);
